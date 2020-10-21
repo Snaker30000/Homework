@@ -1,0 +1,65 @@
+import UIKit
+
+//Домашнее задание 3
+enum typeOfCar {
+    case truck
+    case passenger
+}
+
+enum engineState:String {
+    case started = "Запущен", stopped = "Остановлен"
+}
+enum windowState:String {
+    case opened = "Открыто"
+    case closed = "Закрыто"
+    case broken = "Разбито"
+}
+enum actionWithTrank:String {
+    case load = "Загружен", unload = "Разгружен"
+}
+struct  auto {
+    var typeOfCar: typeOfCar
+    var marka:String = "Ваз"
+    var year:Int = 1977
+    var volumeOfTrunk: Int = 50
+    var fieldOfTrunk: Int
+    var engineSt: engineState
+    var winSt: windowState
+    var trunk: actionWithTrank
+
+    func description (){
+        print ("Ваша машина - \(typeOfCar) марки  \(marka). \(year) года выпуска  с объемом багажника \(volumeOfTrunk). Багажник заполнен на \(fieldOfTrunk) Стстус машины следующий: двигатель \(engineSt) багажник \(trunk.self) окно \(winSt.self)")
+    }
+    mutating func addCargo (fill:Int) {
+        if (fieldOfTrunk + fill) > volumeOfTrunk {
+            print("Cтолько  груза в багажник не войдет! Поместится только \(volumeOfTrunk - fieldOfTrunk) остальное придется оствить!")
+            self.fieldOfTrunk = volumeOfTrunk
+        } else {
+             self.fieldOfTrunk += fill
+    }
+}
+}
+var car1 = auto (typeOfCar: .truck, marka: "Volvo", year: 2015, volumeOfTrunk: 5000, fieldOfTrunk: 2000, engineSt: .stopped, winSt: .opened,trunk: .unload)
+var car2 = auto (typeOfCar: .passenger, marka: "BMV", year: 2010, volumeOfTrunk: 70, fieldOfTrunk: 15, engineSt: .started, winSt: .opened, trunk: .unload)
+var car3 = auto (typeOfCar: .truck, marka: "Toyota", year: 2000, volumeOfTrunk: 10000, fieldOfTrunk: 5000, engineSt: .started, winSt: .closed, trunk: .unload)
+var car4 = auto (typeOfCar: .truck, marka: "Kamaz", year: 2020, volumeOfTrunk: 20000, fieldOfTrunk: 15000, engineSt: .started, winSt: .broken, trunk: .load)
+
+car1.description()
+car1.addCargo(fill: 500)
+car1.description()
+
+car2.description()
+car2.engineSt = .stopped
+car2.addCargo(fill: 500)
+car2.trunk = .load
+car2.description()
+
+car3.description()
+car3.addCargo(fill: 50000)
+car3.description()
+
+car4.description()
+car4.addCargo(fill: 500)
+car4.engineSt = .stopped
+car4.addCargo(fill: 100000)
+car4.description()
