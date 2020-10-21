@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 //Домашнее задание 3
 enum typeOfCar {
