@@ -1,6 +1,6 @@
 import UIKit
 
-//Домашнее задание 3
+//Домашнее задание 3. переупорядочил фаилы
 enum typeOfCar {
     case truck
     case passenger
